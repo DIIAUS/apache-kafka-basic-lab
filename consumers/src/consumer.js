@@ -3,7 +3,10 @@ const { Kafka } = require('kafkajs');
 // สร้าง Kafka instance และตั้งค่า brokers
 const kafka = new Kafka({
   clientId: 'my-consumer', // ชื่อของ client
-  brokers: ['kafka1:9092', 'kafka2:9093'], // brokers ที่เชื่อมต่อ
+  brokers: [
+    'natans-MacBook-Pro.local:9094',
+    'natans-MacBook-Pro.local:9095'
+  ]// brokers ที่เชื่อมต่อ
 });
 
 // สร้าง consumer

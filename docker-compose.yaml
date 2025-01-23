@@ -29,17 +29,32 @@ services:
     container_name: kafka1
     environment:
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper1:2181,zookeeper2:2182
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka1:9092
-      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+      - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://kafka1:9092,EXTERNAL://natans-MacBook-Pro.local:9094
+      - KAFKA_CFG_LISTENERS=INTERNAL://:9092,EXTERNAL://:9094
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=INTERNAL
       - ALLOW_PLAINTEXT_LISTENER=yes
       - KAFKA_BROKER_ID=1
-      - KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS=90000 
+      - KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS=90000
     depends_on:
       - zookeeper1
       - zookeeper2
     ports:
       - "9092:9092"
+      - "9094:9094"
+    # environment:
+    #   - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper1:2181,zookeeper2:2182
+    #   - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://natans-MacBook-Pro.local:9092
+    #   - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT
+    #   - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
+    #   - ALLOW_PLAINTEXT_LISTENER=yes
+    #   - KAFKA_BROKER_ID=1
+    #   - KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS=90000 
+    # depends_on:
+    #   - zookeeper1
+    #   - zookeeper2
+    # ports:
+    #   - "9092:9092"
     networks:
       - kafka-network
 
@@ -48,16 +63,32 @@ services:
     container_name: kafka2
     environment:
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper1:2181,zookeeper2:2182
-      - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka2:9093
-      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT
-      - KAFKA_CFG_LISTENERS=PLAINTEXT://:9093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=INTERNAL://kafka2:9093,EXTERNAL://natans-MacBook-Pro.local:9095
+      - KAFKA_CFG_LISTENERS=INTERNAL://:9093,EXTERNAL://:9095
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=INTERNAL
       - ALLOW_PLAINTEXT_LISTENER=yes
       - KAFKA_BROKER_ID=2
+      - KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS=90000
     depends_on:
       - zookeeper1
       - zookeeper2
     ports:
       - "9093:9093"
+      - "9095:9095"
+    # environment:
+    #   - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper1:2181,zookeeper2:2182
+    #   - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://natans-MacBook-Pro.local:9093
+    #   - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT
+    #   - KAFKA_CFG_LISTENERS=PLAINTEXT://:9093
+    #   - ALLOW_PLAINTEXT_LISTENER=yes
+    #   - KAFKA_BROKER_ID=2
+    #   - KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS=90000 
+    # depends_on:
+    #   - zookeeper1
+    #   - zookeeper2
+    # ports:
+    #   - "9093:9093"
     networks:
       - kafka-network
 
