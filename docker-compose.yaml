@@ -9,6 +9,8 @@ services:
       - ZOO_SERVERS=zookeeper1:2888:3888,zookeeper2:2888:3888
     ports:
       - "2181:2181"
+    volumes:
+      - zookeeper1_data:/bitnami/zookeeper
     networks:
       - kafka-network
 
@@ -21,6 +23,8 @@ services:
       - ZOO_SERVERS=zookeeper1:2888:3888,zookeeper2:2888:3888
     ports:
       - "2182:2181"
+    volumes:
+      - zookeeper2_data:/bitnami/zookeeper
     networks:
       - kafka-network
 
@@ -42,19 +46,8 @@ services:
     ports:
       - "9092:9092"
       - "9094:9094"
-    # environment:
-    #   - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper1:2181,zookeeper2:2182
-    #   - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://natans-MacBook-Pro.local:9092
-    #   - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT
-    #   - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092
-    #   - ALLOW_PLAINTEXT_LISTENER=yes
-    #   - KAFKA_BROKER_ID=1
-    #   - KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS=90000 
-    # depends_on:
-    #   - zookeeper1
-    #   - zookeeper2
-    # ports:
-    #   - "9092:9092"
+    volumes:
+      - kafka1_data:/bitnami/kafka
     networks:
       - kafka-network
 
@@ -76,19 +69,8 @@ services:
     ports:
       - "9093:9093"
       - "9095:9095"
-    # environment:
-    #   - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper1:2181,zookeeper2:2182
-    #   - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://natans-MacBook-Pro.local:9093
-    #   - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT:PLAINTEXT
-    #   - KAFKA_CFG_LISTENERS=PLAINTEXT://:9093
-    #   - ALLOW_PLAINTEXT_LISTENER=yes
-    #   - KAFKA_BROKER_ID=2
-    #   - KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS=90000 
-    # depends_on:
-    #   - zookeeper1
-    #   - zookeeper2
-    # ports:
-    #   - "9093:9093"
+    volumes:
+      - kafka2_data:/bitnami/kafka
     networks:
       - kafka-network
 
@@ -103,6 +85,7 @@ services:
     depends_on:
       - kafka1
       - kafka2
+    
     networks:
       - kafka-network
 
@@ -110,3 +93,13 @@ networks:
   kafka-network:
     driver: bridge
     name: kafka-network
+
+volumes:
+  zookeeper1_data:
+    name: zookeeper1_data
+  zookeeper2_data:
+    name: zookeeper2_data
+  kafka1_data:
+    name: kafka1_data
+  kafka2_data:
+    name: kafka2_data
