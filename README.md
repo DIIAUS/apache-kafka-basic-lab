@@ -110,3 +110,18 @@ Then, enter key-value messages like this:
 key1:message1
 key2:message2
 ```
+## Consumers
+
+### Receive Messages 
+
+#### Terminal Access
+```
+docker exec -it <kafka_container_name> /opt/bitnami/kafka/bin/kafka-console-consumer.sh \
+  --bootstrap-server <BROKER_HOST>:<BROKER_PORT> \
+  --topic <TOPIC_NAME> \
+  --consumer-property group.id=<GROUP_ID> \
+  --consumer-property client.id=<CONSUMER_ID> \
+  --from-beginning
+
+
+```
