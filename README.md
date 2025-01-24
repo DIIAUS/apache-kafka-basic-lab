@@ -116,12 +116,5 @@ key2:message2
 
 #### Terminal Access
 ```
-docker exec -it <kafka_container_name> /opt/bitnami/kafka/bin/kafka-console-consumer.sh \
-  --bootstrap-server <BROKER_HOST>:<BROKER_PORT> \
-  --topic <TOPIC_NAME> \
-  --consumer-property group.id=<GROUP_ID> \
-  --consumer-property client.id=<CONSUMER_ID> \
-  --from-beginning
-
-
+kafka-console-consumer.sh --bootstrap-server :9092 --topic hellojojo --consumer-property group.id=my-group --consumer-property client.id=real_jojo
 ```
