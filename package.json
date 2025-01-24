@@ -5,13 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:consumer": "node consumers/src/consumer.js",
+    "start:consumer-1": "node consumers/src/consumer.js",
+    "start:consumer-2": "node consumers/src/consumer_2.js",
     "start:producer": "node producers/src/producer.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@dotenvx/dotenvx": "^1.33.0",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.4.7",
     "kafkajs": "^2.2.4"
   }
 }
