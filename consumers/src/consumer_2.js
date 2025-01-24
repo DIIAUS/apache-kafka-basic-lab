@@ -4,8 +4,8 @@ const { Kafka } = require('kafkajs');
 const kafka = new Kafka({
   clientId: 'test-consumer-2', // ชื่อของ client
   brokers: [
-    "DESKTOP-0KK53IH:9094",
-    "DESKTOP-0KK53IH:9095"
+    "127.0.0.1:9094",
+    "127.0.0.1:9095"
   ]// brokers ที่เชื่อมต่อ
 });
 
