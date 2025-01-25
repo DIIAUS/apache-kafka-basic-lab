@@ -4,13 +4,15 @@ const { Kafka } = require('kafkajs');
 const kafka = new Kafka({
   clientId: 'test-consumer', // ชื่อของ client
   brokers: [
-    "DESKTOP-0KK53IH:9094", // CHANGE YOUR EXTERNAL HOST
-    "DESKTOP-0KK53IH:9095"  // CHANGE YOUR EXTERNAL HOST
+    "127.0.0.1:9094",
+    "127.0.0.1:9095"
   ]// brokers ที่เชื่อมต่อ
 });
 
-// สร้าง consumer
-const consumer = kafka.consumer({ groupId: 'test-group' });
+/* 
+   * กำหนด group id สําหรับ consumer
+*/
+const consumer = kafka.consumer({ groupId: 'test-group', allowAutoTopicCreation: false });
 
 const run = async () => {
   // เชื่อมต่อกับ Kafka broker

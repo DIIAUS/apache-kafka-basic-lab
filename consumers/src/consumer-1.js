@@ -2,15 +2,17 @@ const { Kafka } = require('kafkajs');
 
 // สร้าง Kafka instance และตั้งค่า brokers
 const kafka = new Kafka({
-  clientId: 'test-consumer-2', // ชื่อของ client
+  clientId: 'test-consumer', // ชื่อของ client
   brokers: [
     "127.0.0.1:9094",
     "127.0.0.1:9095"
   ]// brokers ที่เชื่อมต่อ
 });
 
-// สร้าง consumer
-const consumer = kafka.consumer({ groupId: 'test-group' });
+/*
+* กำหนด group id สําหรับ consumer
+*/
+const consumer = kafka.consumer({ groupId: 'test-group_2', allowAutoTopicCreation: false });
 
 const run = async () => {
   // เชื่อมต่อกับ Kafka broker
