@@ -1,6 +1,7 @@
 'use client'
 
-import { NikeCard } from '../../components/nikeCard'
+import { MainBanner } from '@/components/banner/main-banner'
+import { NikeCard } from '@/components/nikeCard'
 import React from 'react'
 import styled from 'styled-components'
 
@@ -15,9 +16,11 @@ const AppContainer = styled.div`
 const producerPage = () => {
   return (
     <>
-        <AppContainer>
+        {/* <AppContainer>
             <NikeCard  name={"Nike"} price={550} />    
-        </AppContainer>       
+        </AppContainer>    */}    
+
+        <MainBanner/>
     </>
   )
 }

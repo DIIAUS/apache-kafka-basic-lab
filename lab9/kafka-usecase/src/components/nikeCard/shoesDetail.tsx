@@ -1,10 +1,9 @@
-'use client'
 import React from "react";
 import styled from "styled-components";
 import NikeLogoImg from "../../../public/nike-card-asset/images/nike-logo.png";
 import { Marginer } from "./marginer";
 
-const DetailsConainer = styled.div`
+const DetailsContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
@@ -68,7 +67,7 @@ const NikeLogo = styled.div`
 
 export const ShoesDetails = (props: any) => {
   return (
-    <DetailsConainer>
+    <DetailsContainer>
       <SmallText>Nike</SmallText>
       <SpacedHorizontalContainer>
         <MediumText>Air Jordan</MediumText>
@@ -82,6 +81,6 @@ export const ShoesDetails = (props: any) => {
       <NikeLogo>
         <img src={NikeLogoImg.src} alt="Nike Logo" />
       </NikeLogo>
-    </DetailsConainer>
+    </DetailsContainer>
   );
 };

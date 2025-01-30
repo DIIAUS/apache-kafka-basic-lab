@@ -1,4 +1,3 @@
-'use client'
 import { motion, useMotionValue, useTransform } from "framer-motion"
 import styled from "styled-components"
 
